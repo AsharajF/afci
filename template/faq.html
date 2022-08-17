@@ -1,0 +1,1396 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+
+<!-- Mirrored from jthemes.net/themes/html/genius-course/faq.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2022 06:13:04 GMT -->
+<head>
+
+	<meta charset="UTF-8">
+
+	<title>FAQ Page</title>
+
+	<!-- Mobile Specific Meta -->
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href='{% static "assets/css/owl.carousel.css" %}'>
+
+	<link rel="stylesheet" href='{% static "assets/css/fontawesome-all.css" %}'>
+
+	<link rel="stylesheet" href='{% static "assets/css/flaticon.css" %}'>
+
+	<link rel="stylesheet" type="text/css" href='{% static "assets/css/meanmenu.css" %}'>
+
+	<link rel="stylesheet" href='{% static "assets/css/bootstrap.min.css" %}'>
+
+	<link rel="stylesheet" href='{% static "assets/css/video.min.css" %}'>
+
+	<link rel="stylesheet" href='{% static "assets/css/lightbox.css" %}'>
+
+	<link rel="stylesheet" href='{% static "assets/css/progess.css" %}'>
+
+	<link rel="stylesheet" href='{% static "assets/css/style.css" %}'>
+
+	<link rel="stylesheet" href='{% static "assets/css/responsive.css" %}'>
+
+
+
+
+
+	<link rel="stylesheet"  href='{% static "assets/css/colors/switch.css" %}'>
+
+	<link href='{% static "assets/css/colors/color-2.css" %}'rel="alternate stylesheet" type="text/css" title="color-2">
+
+	<link href='{% static "assets/css/colors/color-3.css" %}'rel="alternate stylesheet" type="text/css" title="color-3">
+
+	<link href='{% static "assets/css/colors/color-4.css" %}'rel="alternate stylesheet" type="text/css" title="color-4">
+
+	<link href='{% static "assets/css/colors/color-5.css" %}'rel="alternate stylesheet" type="text/css" title="color-5">
+
+	<link href='{% static "assets/css/colors/color-6.css" %}'rel="alternate stylesheet" type="text/css" title="color-6">
+
+	<link href='{% static "assets/css/colors/color-7.css" %}'rel="alternate stylesheet" type="text/css" title="color-7">
+
+	<link href='{% static "assets/css/colors/color-8.css" %}' rel="alternate stylesheet" type="text/css" title="color-8">
+
+	<link href='{% static "assets/css/colors/color-9.css" %}' rel="alternate stylesheet" type="text/css" title="color-9">
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+	<div id="preloader"></div>
+
+
+
+		<!--<div id="switch-color" class="color-switcher">
+
+		<div class="open"><i class="fas fa-cog fa-spin"></i></div>
+
+		<h4>COLOR OPTION</h4>
+
+		<ul>
+
+			<li><a class="color-2" onclick="setActiveStyleSheet('color-2'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+
+			<li><a class="color-3" onclick="setActiveStyleSheet('color-3'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+
+			<li><a class="color-4" onclick="setActiveStyleSheet('color-4'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+
+			<li><a class="color-5" onclick="setActiveStyleSheet('color-5'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+
+			<li><a class="color-6" onclick="setActiveStyleSheet('color-6'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+
+			<li><a class="color-7" onclick="setActiveStyleSheet('color-7'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+
+			<li><a class="color-8" onclick="setActiveStyleSheet('color-8'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+
+			<li><a class="color-9" onclick="setActiveStyleSheet('color-9'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+
+		</ul>
+
+		<button class="switcher-light">WIDE </button>
+
+		<button class="switcher-dark">BOX </button>
+
+		<a class="rtl-v" href="RTL_Genius/index.html">RTL </a>
+
+	</div>-->
+
+
+
+
+
+
+
+	<!-- Start of Header section
+
+		============================================= -->
+
+		<header>
+
+			<div id="main-menu"  class="main-menu-container">
+
+				<div  class="main-menu">
+
+					<div class="container">
+
+						<div class="navbar-default">
+
+							<div class="navbar-header float-left">
+
+								<a class="navbar-brand text-uppercase" href="#"><img src='{% static "assets/img/logo/logo.png" %}' alt="logo"></a>
+
+							</div><!-- /.navbar-header -->
+
+							<div class="cart-search float-right ul-li">
+								<ul>
+									<li><a href="{% url 'cart' %}"><i class="fas fa-shopping-bag"></i></a></li>
+									<li>
+										<button type="button" class="toggle-overlay search-btn">
+											<i class="fas fa-search"></i>
+										</button>
+										<div class="search-body">
+											<div class="search-form">
+												<form action="{% url 'search' %}" method="GET">
+													{% csrf_token %}
+													<input class="search-input" name= "search" type="search" placeholder="Search Here">
+													<div class="outer-close toggle-overlay">
+														<button type="button" class="search-close">
+															<i class="fas fa-times"></i>
+														</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="log-in float-right">
+								{% if user.is_authenticated %}
+								<a href="{% url 'dashboard' %}"> Hi &hearts; {{user.username}}</a>
+								<a href="{% url 'signout' %}">Log out</a>
+								{% else %}
+								<a  data-toggle="modal" data-target="#login" href="#">log in </a>
+								<a  data-toggle="modal" data-target="#register" href="#">register</a>
+								{% endif %}
+
+							
+
+								<!-- The Modal -->
+
+								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+
+									<div class="modal-dialog">
+
+										<div class="modal-content">
+											<!-- Modal Header -->
+
+											<div class="modal-header backgroud-style">
+
+												<div class="gradient-bg"></div>
+
+												<div class="popup-logo">
+
+													<img src='{% static "assets/img/logo/p-logo.jpg" %}' alt="">
+
+												</div>
+
+												<div class="popup-text text-center">
+
+													<h2> <span>Login</span> Your Account.</h2>
+													<p>or <span>Sign Up</span> if you are new User</p>	
+											</div>
+
+											</div>
+
+
+
+											<!-- Modal body -->
+
+											<div class="modal-body">
+
+												<!--<div class="facebook-login">
+
+													<a href="#">
+
+														<div class="log-in-icon">
+
+															<i class="fab fa-facebook-f"></i>
+
+														</div>
+
+														<div class="log-in-text text-center">
+
+															Login with Facebook
+
+														</div>
+
+													</a>
+
+												</div>
+
+												<div class="alt-text text-center"><a href="#">OR SIGN IN</a> </div> -->
+
+												<form action="{% url 'login' %}" method="POST" enctype="multipart/form-data" autocomplete="off">
+													{% csrf_token %}
+													<div class="contact-info form-input" >
+														<label style="font-weight:bold;" >Username</label>
+														<input class="name" name="uname" type="text" onfocus="this.value=''" placeholder="">
+													</div>
+													<div class="contact-info">
+														<label style="font-weight:bold;">Password</label>
+														<input class="password" name="pw" type="password" onfocus="this.value=''" placeholder="">
+													</div>
+													<br>
+																							
+													<div class="nws-button text-center white text-capitalize">
+														<button type="submit" value="Submit">Log in</button> 
+													</div> 
+												</form>
+
+												<!--<div class="log-in-footer text-center">
+
+													<p>* Denotes mandatory field.</p>
+
+													<p>** At least one telephone number is required.</p>
+
+												</div>-->
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+
+											<!-- Modal Header -->
+											<div class="modal-header backgroud-style">
+												<div class="gradient-bg"></div>
+												<div class="popup-logo">
+													<img src='{% static "assets/img/logo/p-logo.jpg" %}' alt="">
+												</div>
+												<div class="popup-text text-center">
+													<h2>Get <span>Registered</span> with us</h2>
+													
+												</div>
+											</div>
+
+											<!-- Modal body -->
+											<div class="modal-body">
+												<!--<div class="facebook-login">
+													<a href="#">
+														<div class="log-in-icon">
+															<i class="fab fa-facebook-f"></i>
+														</div>
+														<div class="log-in-text text-center">
+															Login with Facebook
+														</div>
+													</a>
+												</div>
+												<div class="alt-text text-center"><a href="#">OR SIGN IN</a> </div> -->
+												
+												<form class="contact_form" action='{% url "register" %}' method="POST" enctype="multipart/form-data">
+													{% csrf_token %}
+													<div class="contact-info">
+														<input type="text" name="fname" id="w3lName" placeholder="First Name*" class="contact-input ab"><br><br>
+														
+													</div>
+													<div class="contact-info">
+														<input type="text" name="lname" id="w3lName" placeholder="Last Name*" class="contact-input ab"><br><br>
+														
+													</div>
+													<div class="contact-info">
+														<input type="text" name="uname" id="w3lName" placeholder="Username*" class="contact-input ab"><br><br>
+														
+													</div>
+													<div class="contact-info">
+														<input type="email" name="email" id="w3lSender" placeholder="Your Email*" class="contact-input ab" required=""><br><br>
+														
+													</div>
+													<div class="contact-info">
+														<input type="tel" maxlength="10" minlength="10" name="contact" id="w3lName" placeholder="contact " class="contact-input ab"><br><br>
+														
+													</div>
+													<div class="contact-info">
+														<input type="text" name="city" id="w3lName" placeholder="city" class="contact-input ab"><br><br>
+														
+													</div>
+													<div class="contact-info">
+														<input type="password" name="pw" id="w3lName" placeholder="Password" class="contact-input ab"><br><br>
+													
+													</div>
+													<div class="contact-info">
+														<input type="password" name="cpw" id="w3lName" placeholder="Confirm Password" class="contact-input ab"><br><br>	
+													</div>
+
+													<!--<div class="contact-info">
+														Register as Teacher :
+															<input type="checkbox" name="staff" style="height:20px;width:30px" >
+														</div>-->
+													
+													<div class="nws-button text-center white text-capitalize">
+														<button type="submit" value="Submit">Register Now</button> 
+													</div> 
+												</form>
+												<div class="log-in-footer text-center">
+													<p>* Denotes mandatory field.</p>
+													<p>** At least one telephone number is required.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>	
+
+							</div>
+
+							<!-- Collect the nav links, forms, and other content for toggling -->
+							<nav class="navbar-menu float-right">
+								<div class="nav-menu ul-li">
+									<ul>
+										<li class="menu-item-has-children ul-li-block">
+											<a href="{% url 'hm' %}">Home</a>
+											<!--<ul class="sub-menu">
+												<li><a href='{% url "hm" %}'>Home</a></li>
+											</ul>-->
+										</li>
+										<li><a href="{% url 'about' %}">About Us</a></li>
+										<li><a href="{% url 'crs' %}">Courses</a></li>
+										<li><a href="{% url 'contact' %}">Contact Us</a></li>
+										<li class="menu-item-has-children ul-li-block">
+											<a href="#">Services</a>
+											<ul class="sub-menu">
+												<li><a href="{% url 'Apply_afci' %}">Register as Teacher</a></li>
+												<li><a href="#about-us">Placement Support</a></li>
+											</ul>
+										</li>
+										<!--<li class="breadcrumb-item"><a href="{% url 'Apply_afci' %}">Apply Now</a></li>-->
+										<li class="menu-item-has-children ul-li-block">
+											<a href="#!">Pages</a>
+											<ul class="sub-menu">
+												<li><a href="{% url 'tech' %}">Teachers</a></li>
+											
+												<!--<li><a href="blog.html">Blog</a></li>
+												<li><a href="blog-single.html">Blog Single</a></li>-->
+												<li><a href="{% url 'material' %}">Study Materials</a></li>
+												
+												<li><a href="{% url 'faq' %}">FAQ</a></li>
+												<li><a href="{% url 'cart' %}">Check Out</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</nav>
+
+							<div class="mobile-menu">
+								<div class="logo"><a href="index-1.html"><img src='{% static "assets/img/logo/logo.png" %}' alt="Logo"></a></div>
+								<nav>
+									<ul>
+										<li><a href="{% url 'hm' %}">Home</a>
+										</li>
+										<li><a href="{% url 'about' %}">About</a></li>
+										<li><a href="{% url 'crs' %}">Courses</a></li>
+										<li><a href="{% url 'contact' %}">Contact Us</a></li>
+										<li><a href="#">Services</a>
+										<ul>
+												<li><a href="{% url 'Apply_afci' %}">Register as Teacher</a></li>
+												<li><a href="#about-us">Placement Support</a></li>
+												
+											</ul>
+										</li>
+										
+										<li><a href="#">Pages</a>
+											<ul>
+											
+												<li><a href="{% url 'tech' %}">teacher</a></li>
+												<li><a href="{% url 'material' %}">Study Materials</a></li>
+												<li><a href="{% url 'faq' %}">FAQ</a></li>
+												<li><a href="{% url 'cart' %}">Check Out</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+							</div>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</header>
+
+ 	<!-- Start of Header section
+
+ 		============================================= --> 
+
+
+
+
+
+	<!-- Start of breadcrumb section
+
+		============================================= -->
+
+		<section id="breadcrumb" class="breadcrumb-section relative-position backgroud-style">
+
+			<div class="blakish-overlay"></div>
+
+			<div class="container">
+
+				<div class="page-breadcrumb-content text-center">
+
+					<div class="page-breadcrumb-title">
+
+						<h2 class="breadcrumb-head black bold">Frequently <span>Ask & Questions</span></h2>
+
+					</div>
+
+					<div class="page-breadcrumb-item ul-li">
+
+						<ul class="breadcrumb text-uppercase black">
+
+							<li class="breadcrumb-item"><a href="{% url 'hm' %}">Home</a></li>
+
+							<li class="breadcrumb-item active">FAQ</li>
+
+						</ul>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+	<!-- End of breadcrumb section
+
+		============================================= -->
+
+
+
+
+
+	<!-- Start FAQ section
+
+		============================================= -->
+
+		<section id="faq-page" class="faq-page-section">
+
+			<div class="container">
+
+				<div class="faq-element">
+
+					<div class="row">
+
+						<div class="col-md-12">
+
+							<div class="faq-page-tab">
+
+								<div class="section-title-2 mb65 headline text-left">
+
+									<h2>Find <span>Your Questions & Answers.</span></h2>
+
+								</div>
+
+
+
+								<div class="faq-tab faq-secound-home-version mb35">
+
+									<div class="faq-tab-ques  ul-li">
+
+										<!--<div class="tab-button text-left mb45">
+
+											<ul class="product-tab">
+
+												<li class="active" rel="tab1">GENERAL </li>
+
+												<li rel="tab2"> COURSES </li>
+
+												<li rel="tab3"> TEACHERS </li>
+
+												<li rel="tab4">  EVENTS  </li>
+
+												<li rel="tab5">  OTHERS  </li>
+
+											</ul>
+
+										</div>-->
+
+										<!-- /tab-head -->
+
+
+
+										<!-- tab content -->
+
+										<div class="tab-container">
+
+
+
+											<!-- 1st tab -->
+
+											<div id="tab1" class="tab-content-1 pt35">
+
+												<div id="accordion" class="panel-group">
+
+													<div class="row ml-0 mr-0">
+
+														<div class="col-md-6">
+
+															<div class="panel">
+
+																<div class="panel-title" id="headingOne">
+
+																	<h3 class="mb-0">
+
+																		<button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+
+																			How to Register or Make An Account in AFCI Digilearn?
+
+																		</button>
+
+																	</h3>
+
+																</div>
+
+																<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+
+																	<div class="panel-body">
+																		Follow the following steps:
+																		<ul>
+																			<li>Select Sign Up option </li>
+																			<li>Fill your details</li>
+																			<li>Login with you ID and password</li>
+
+																		</ul>
+
+																		 Then .
+
+																	</div>
+
+																</div>
+
+															</div>
+
+															<div class="panel">
+
+																<div class="panel-title" id="headingTwo">
+
+																	<h3 class="mb-0">
+
+																		<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+
+																			What are different types of users?
+
+																		</button>
+
+																	</h3>
+
+																</div>
+
+																<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+
+																	<div class="panel-body">
+
+																		There are 4 types of users.
+																		<ul>
+																			<li> Live Classes Student</li>
+																			<li> Recorded Lectures Student</li>
+																			<li> Test Series Student</li>
+																			<li> Job Seeker </li>
+																		</ul>
+																	</div>
+
+																</div>
+
+															</div>
+
+															<div class="panel">
+
+																<div class="panel-title" id="headingThree">
+
+																	<h3 class="mb-0">
+
+																		<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+
+																			What Serivices are provided by AFCI?
+
+																		</button>
+
+																	</h3>
+
+																</div>
+
+																<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+
+																	<div class="panel-body">
+																		AFCI provides Coaching Classes,Competitive preparations , Career councelling , Professional Skills training and Placement support
+
+
+																	</div>
+
+																</div>
+
+															</div>
+
+															<div class="panel">
+
+																<div class="panel-title" id="heading65">
+
+																	<h3 class="mb-0">
+
+																		<button class="btn btn-link  collapsed" data-toggle="collapse" data-target="#collapse65" aria-expanded="true" aria-controls="collapse65">
+
+																			How do Job Seekers benefit from AFCI DigiLearn?
+																		</button>
+
+																	</h3>
+
+																</div>
+
+																<div id="collapse65" class="collapse" aria-labelledby="heading65" data-parent="#accordion">
+
+																	<div class="panel-body">
+																		After registering with an amount @299/- one gets a 365 Days career support followed by interviews and exams preparation. Job Seekers are added in WhatsApp group for placement notifications and the updates would be on website soon.
+
+
+																	</div>
+
+																</div>
+
+															</div>
+
+															<div class="panel">
+
+																<div class="panel-title" id="heading78">
+
+																	<h3 class="mb-0">
+
+																		<button class="btn btn-link  collapsed" data-toggle="collapse" data-target="#collapse78" aria-expanded="true" aria-controls="collapse78">
+
+																			How to Register for Trial class?
+
+																		</button>
+
+																	</h3>
+
+																</div>
+
+																<div id="collapse78" class="collapse" aria-labelledby="heading78" data-parent="#accordion">
+
+																	<div class="panel-body">
+
+Just go to the contac form and send mail for the subject and trail class time ,  a mail would be sent , containing a unique user id and a password for guest login.
+																	</div>
+
+																</div>
+
+															</div>
+
+														</div>
+
+
+
+														<div class="col-md-6">
+
+															<div class="panel">
+
+																<div class="panel-title" id="heading22">
+
+																	<h3 class="mb-0">
+
+																		<button class="btn btn-link" data-toggle="collapse" data-target="#collapse22" aria-expanded="true" aria-controls="collapse22">
+
+																			How to Register or Make An Account in Genius?
+
+																		</button>
+
+																	</h3>
+
+																</div>
+
+																<div id="collapse22" class="collapse show" aria-labelledby="heading22" data-parent="#accordion">
+
+																	<div class="panel-body">
+
+																		Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
+
+																	</div>
+
+																</div>
+
+															</div>
+
+															<div class="panel">
+
+																<div class="panel-title" id="headingFoure">
+
+																	<h3 class="mb-0">
+
+																		<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFoure" aria-expanded="true" aria-controls="collapseFoure">
+
+																			Adipiscing Diamet Nonnumy Nibh Euismod?
+
+																		</button>
+
+																	</h3>
+
+																</div>
+
+																<div id="collapseFoure" class="collapse"  data-parent="#accordion">
+
+																	<div class="panel-body">
+
+																		Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
+
+																	</div>
+
+																</div>
+
+															</div>
+
+															<div class="panel">
+
+																<div class="panel-title" id="heading33">
+
+																	<h3 class="mb-0">
+
+																		<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse33" aria-expanded="true" aria-controls="collapse33">
+
+																			What is Genius Courses?
+
+																		</button>
+
+																	</h3>
+
+																</div>
+
+																<div id="collapse33" class="collapse" aria-labelledby="heading33" data-parent="#accordion">
+
+																	<div class="panel-body">
+
+																		Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
+
+																	</div>
+
+																</div>
+
+															</div>
+
+															<div class="panel">
+
+																<div class="panel-title" id="heading36">
+
+																	<h3 class="mb-0">
+
+																		<button class="btn btn-link  collapsed" data-toggle="collapse" data-target="#collapse36" aria-expanded="true" aria-controls="collapse36">
+
+																			How to Register or Make An Account in Genius?
+
+																		</button>
+
+																	</h3>
+
+																</div>
+
+																<div id="collapse36" class="collapse" aria-labelledby="heading36" data-parent="#accordion">
+
+																	<div class="panel-body">
+
+																		Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
+
+																	</div>
+
+																</div>
+
+															</div>
+
+															<div class="panel">
+
+																<div class="panel-title" id="heading998">
+
+																	<h3 class="mb-0">
+
+																		<button class="btn btn-link  collapsed" data-toggle="collapse" data-target="#collapse998" aria-expanded="true" aria-controls="collapse998">
+
+																			How to Register or Make An Account in Genius?
+
+																		</button>
+
+																	</h3>
+
+																</div>
+
+																<div id="collapse998" class="collapse" aria-labelledby="heading998" data-parent="#accordion">
+
+																	<div class="panel-body">
+
+																		Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
+
+																	</div>
+
+																</div>
+
+															</div>
+
+														</div>
+
+													</div>
+
+													<!-- end of #accordion -->
+
+												</div>
+
+											</div>
+
+											<!-- #tab1 -->
+
+
+
+											<!--<div id="tab2" class="tab-content-1 pt35">
+
+												<div id="accordion-2" class="panel-group">
+
+													<div class="panel">
+
+														<div class="panel-title" id="headingSix">
+
+															<h3 class="mb-0">
+
+																<button class="btn btn-link" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+
+																	How to Register or Make An Account in Genius?
+
+																</button>
+
+															</h3>
+
+														</div>
+
+														<div id="collapseSix" class="collapse show" aria-labelledby="headingSix" data-parent="#accordion-2">
+
+															<div class="panel-body">
+
+																Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
+
+															</div>
+
+														</div>
+
+													</div>
+
+													<div class="panel">
+
+														<div class="panel-title" id="headingSeven">
+
+															<h3 class="mb-0">
+
+																<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+
+																	What is Genius Courses?
+
+																</button>
+
+															</h3>
+
+														</div>
+
+														<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion-2">
+
+															<div class="panel-body">
+
+																Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
+
+															</div>
+
+														</div>
+
+													</div>
+
+													<div class="panel">
+
+														<div class="panel-title" id="headingEight">
+
+															<h3 class="mb-0">
+
+																<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+
+																	What Lorem Ipsum Dolor Sit Amet Consectuerer?
+
+																</button>
+
+															</h3>
+
+														</div>
+
+														<div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion-2">
+
+															<div class="panel-body">
+
+																Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
+
+															</div>
+
+														</div>
+
+													</div>
+
+													<div class="panel">
+
+														<div class="panel-title" id="headingNine">
+
+															<h3 class="mb-0">
+
+																<button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="true" aria-controls="collapseNine">
+
+																	Adipiscing Diamet Nonnumy Nibh Euismod?
+
+																</button>
+
+															</h3>
+
+														</div>
+
+														<div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion-2">
+
+															<div class="panel-body">
+
+																Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam consectetuer adipiscing elit, sed diam nonummy.
+
+															</div>
+
+														</div>
+
+													</div>
+
+												</div>
+
+												<!-- end of #accordion 
+
+											</div>-->
+
+											<!-- #tab2 -->
+
+
+
+											<!--<div id="tab3" class="tab-content-1 pt35">
+
+												<div class="row">
+
+													<div class="col-md-6">
+
+														<div class="ques-ans mb45 headline">
+
+															<h3> What is Genius Courses?</h3>
+
+															<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
+
+														</div>
+
+
+
+														<div class="ques-ans mb45 headline">
+
+															<h3> What Lorem Ipsum Dolor Sit Amet Consectuerer?</h3>
+
+															<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
+
+														</div>
+
+													</div>
+
+
+
+													<div class="col-md-6">
+
+														<div class="ques-ans mb45 headline">
+
+															<h3> How to Register or Make An Account in Genius?</h3>
+
+															<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
+
+														</div>
+
+
+
+														<div class="ques-ans mb45 headline">
+
+															<h3> Adipiscing Diamet Nonnumy Nibh Euismod?</h3>
+
+															<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
+
+														</div>
+
+													</div>
+
+												</div>
+
+											</div>-->
+
+											<!-- #tab3 -->
+
+
+
+											<!--<div id="tab4" class="tab-content-1 pt35">
+
+												<div class="row">
+
+													<div class="col-md-6">
+
+														<div class="ques-ans mb45 headline">
+
+															<h3> What is Genius Courses?</h3>
+
+															<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
+
+														</div>
+
+
+
+														<div class="ques-ans mb45 headline">
+
+															<h3> What Lorem Ipsum Dolor Sit Amet Consectuerer?</h3>
+
+															<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
+
+														</div>
+
+													</div>
+
+
+
+													<div class="col-md-6">
+
+														<div class="ques-ans mb45 headline">
+
+															<h3> How to Register or Make An Account in Genius?</h3>
+
+															<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
+
+														</div>
+
+
+
+														<div class="ques-ans mb45 headline">
+
+															<h3> Adipiscing Diamet Nonnumy Nibh Euismod?</h3>
+
+															<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
+
+														</div>
+
+													</div>
+
+												</div>
+
+											</div>-->
+
+											<!-- #tab3 -->
+
+
+
+											<!--<div id="tab5" class="tab-content-1 pt35">
+
+												<div class="row">
+
+													<div class="col-md-6">
+
+														<div class="ques-ans mb45 headline">
+
+															<h3> What is Genius Courses?</h3>
+
+															<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
+
+														</div>
+
+
+
+														<div class="ques-ans mb45 headline">
+
+															<h3> What Lorem Ipsum Dolor Sit Amet Consectuerer?</h3>
+
+															<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
+
+														</div>
+
+													</div>
+
+
+
+													<div class="col-md-6">
+
+														<div class="ques-ans mb45 headline">
+
+															<h3> How to Register or Make An Account in Genius?</h3>
+
+															<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
+
+														</div>
+
+
+
+														<div class="ques-ans mb45 headline">
+
+															<h3> Adipiscing Diamet Nonnumy Nibh Euismod?</h3>
+
+															<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam volutpat. Ut wisi enim ad minim veniam.</p>
+
+														</div>
+
+													</div>
+
+												</div>
+
+											</div>-->
+
+											<!-- #tab3 -->
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="about-btn">
+
+								<div class="genius-btn gradient-bg text-center text-uppercase ul-li-block bold-font">
+
+									<a href="{% url 'contact' %}">Make Question <i class="fas fa-caret-right"></i></a>
+
+								</div>
+
+							
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+	<!-- End FAQ section
+
+		============================================= -->
+
+	<!-- Start of footer section
+
+		============================================= -->
+		<footer>
+			<section id="footer-area" class="footer-area-section">
+				<div class="container">
+					<div class="footer-content pb10">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="footer-widget "  >
+									<div class="footer-logo mb35">
+										<img src='{% static "assets/img/logo/f-logo.png" %}' alt="">
+									</div>
+									<div class="footer-about-text">
+										<p>We take our mission of increasing global access to quality education seriously.
+											We connect learners to the best universities and institutions from around the
+											world.</p>
+										<p>OUR CHILDREN ARE THE FUTURE OF INDIA </p><P>OUR MOTTO IS TO EDUCATE INDIA TO BECOME A SUPERPOWER</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="footer-widget "  >
+									<div class="footer-menu ul-li-block">
+										<h2 class="widget-title">Useful Links</h2>
+										<ul>
+											<li><a href="{% url 'about' %}"><i class="fas fa-caret-right"></i>About Us</a></li>
+											<li><a href="{% url 'crs' %}"><i class="fas fa-caret-right"></i>Courses</a></li>
+											<li><a href="#best-course"><i class="fas fa-caret-right"></i>Categories</a></li>
+											<li><a href="#about-us"><i class="fas fa-caret-right"></i>Placement</a></li>
+											<li><a href="#best-course"><i class="fas fa-caret-right"></i>Training</a></li>
+											<li><a href="{% url 'material' %}"><i class="fas fa-caret-right"></i>Study Materials</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="footer-menu ul-li-block "  >
+									<h2 class="widget-title">Account Info</h2>
+									<ul>
+										<li><a href="{% url 'dashboard' %}"><i class="fas fa-caret-right"></i>Profile</a></li>
+										<li><a href="{% url 'contact' %}"><i class="fas fa-caret-right"></i>Contact Us</a></li>
+										<li><a href="{% url 'faq' %}"><i class="fas fa-caret-right"></i>FAQs</a></li>
+										
+									</ul>
+								</div>
+							</div>
+							<div class="col-md-3">
+
+								<div class="footer-widget "  >
+									
+									<h2 class="widget-title">Photo Gallery</h2>
+									{% for i in gal %}
+									<div class="photo-list ul-li">
+										
+										<ul>
+											<li>
+												<img src="{{ i.img.url }}" style="float:left; width:80px;height:80px;" alt="">
+												<div class="blakish-overlay"></div>
+												<div class="pop-up-icon">
+													<a href="{{ i.img.url }}" data-lightbox="roadtrip">
+														<i class="fas fa-search"></i>
+													</a>
+												</div>
+											<li>
+											<!--<li>
+												<img src='{% static "assets/img/gallery/g-2.jpg" %}' alt="">
+												<div class="blakish-overlay"></div>
+												<div class="pop-up-icon">
+													<a href="assets/img/gallery/g-2.jpg" data-lightbox="roadtrip">
+														<i class="fas fa-search"></i>
+													</a>
+												</div>
+											</li>
+											<li>
+												<img src='{% static "assets/img/gallery/g-3.jpg" %}' alt="">
+												<div class="blakish-overlay"></div>
+												<div class="pop-up-icon">
+													<a href="assets/img/gallery/g-3.jpg" data-lightbox="roadtrip">	<i class="fas fa-search"></i></a>
+												</div>
+											</li>
+											<li>
+												<img src='{% static "assets/img/gallery/g-4.jpg" %}' alt="">
+												<div class="blakish-overlay"></div>
+												<div class="pop-up-icon">
+													<a href="assets/img/gallery/g-4.jpg" data-lightbox="roadtrip">	<i class="fas fa-search"></i></a>
+												</div>
+											</li>
+											<li>
+												<img src='{% static "assets/img/gallery/g-5.jpg" %}' alt="">
+												<div class="blakish-overlay"></div>
+												<div class="pop-up-icon">
+													<a href="assets/img/gallery/g-5.jpg" data-lightbox="roadtrip">	<i class="fas fa-search"></i></a>
+												</div>
+											</li>
+											<li>
+												<img src='{% static "assets/img/gallery/g-6.jpg" %}' alt="">
+												<div class="blakish-overlay"></div>
+												<div class="pop-up-icon">
+													<a href="assets/img/gallery/g-6.jpg" data-lightbox="roadtrip">	<i class="fas fa-search"></i></a>
+												</div>
+
+											</li>-->
+										</ul>
+									
+									</div>
+									{% endfor %}
+									
+								</div>
+							</div>
+						</div>
+					</div> 
+					<!-- /footer-widget-content -->
+					<div class="footer-social-subscribe mb65">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="footer-social ul-li "  >
+									<h2 class="widget-title">Social Network</h2>
+									<ul>
+										<li><a href="https://www.facebook.com/asharajfoundation/"><i class="fab fa-facebook-f"></i></a></li>
+										<li><a href="https://twitter.com/asharajsociety?lang=en"><i class="fab fa-twitter"></i></a></li>
+										<li><a href="https://chat.whatsapp.com/GUL0TPI1Z1P62olSW5cxIC"><i class="fab fa-whatsapp"></i></a></li>
+										<li><a href="https://www.instagram.com/asharajsociety/"><i class="fab fa-instagram"></i></a></li>
+										<li><a href="https://www.linkedin.com/company/asharajfoundation/about/"><i class="fab fa-linkedin-in"></i></a></li>
+										
+										
+									</ul>
+								</div>
+							</div>
+							<div class="col-md-9">
+								<div class="subscribe-form "  >
+									<h2 class="widget-title">Subscribe To AFCI:DigiLearn</h2>
+
+									<div class="subs-form relative-position">
+										<form action="{% url 'Subs_email' %}" method="post">
+											{% csrf_token %}
+											<input class="course" name="course" type="email" placeholder="Email Address." required="@,.">
+											<div class="nws-button text-center  gradient-bg text-uppercase">
+												<button type="submit" value="Submit">Subscribe now</button> 
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="copy-right-menu">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="copy-right-text">
+									<p>© 2022 - Designed & Developed by Yashi Sharma and Siya Pandey </a>. All rights reserved</p>
+									
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="copy-right-menu-item float-right ul-li">
+									<ul>
+										<li><a href="#">License</a></li>
+										<li><a href="#">Privacy & Policy</a></li>
+										<li><a href="#">Term Of Service</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</footer>
+
+	<!-- End of footer section
+
+		============================================= -->
+
+
+
+
+
+
+
+		<!-- For Js Library -->
+
+		<script src='{% static "assets/js/jquery-2.1.4.min.js" %}'></script>
+
+		<script src='{% static "assets/js/bootstrap.min.js" %}'></script>
+
+		<script src='{% static "assets/js/popper.min.js" %}'></script>
+
+		<script src='{% static "assets/js/owl.carousel.min.js" %}'></script>
+
+		<script src='{% static "assets/js/jarallax.js" %}'></script>
+
+		<script src='{% static "assets/js/jquery.magnific-popup.min.js" %}'></script>
+
+		<script src='{% static "assets/js/lightbox.js" %}'></script>
+
+		<script src='{% static "assets/js/jquery.meanmenu.js" %}'></script>
+
+		<script src='{% static "assets/js/scrollreveal.min.js" %}'></script>
+
+		<script src='{% static "assets/js/jquery.counterup.min.js" %}'></script>
+
+		<script src='{% static "assets/js/waypoints.min.js" %}'></script>
+
+		<script src='{% static "assets/js/jquery-ui.js" %}'></script>
+
+		<script src='{% static "assets/js/gmap3.min.js" %}'></script>
+
+		<script src='{% static "assets/js/switch.js" %}'></script>
+
+		<script src="http://maps.google.com/maps/api/js?key=AIzaSyC61_QVqt9LAhwFdlQmsNwi5aUJy9B2SyA"></script>
+
+
+
+    	<script src='{% static "assets/js/script.js" %}'></script>
+
+	</body>
+
+	
+<!-- Mirrored from jthemes.net/themes/html/genius-course/faq.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2022 06:13:04 GMT -->
+</html>
