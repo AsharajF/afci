@@ -1,0 +1,1056 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+
+<!-- Mirrored from jthemes.net/themes/html/genius-course/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2022 06:12:54 GMT -->
+<head>
+	<meta charset="UTF-8">
+	<title>About Page</title>
+
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href='{% static "assets/css/owl.carousel.css" %}'>
+	<link rel="stylesheet" href='{% static "assets/css/fontawesome-all.css" %}'>
+	<link rel="stylesheet" href='{% static "assets/css/flaticon.css" %}'>
+	<link rel="stylesheet" type="text/css" href='{% static "assets/css/meanmenu.css" %}'>
+	<link rel="stylesheet" href='{% static "assets/css/bootstrap.min.css" %}'>
+	<link rel="stylesheet" href='{% static "assets/css/video.min.css" %}'>
+	<link rel="stylesheet" href='{% static "assets/css/lightbox.css" %}'>
+	<link rel="stylesheet" href='{% static "assets/css/progess.css" %}'>
+	<link rel="stylesheet" href='{% static "assets/css/style.css" %}'>
+	<link rel="stylesheet" href='{% static "assets/css/responsive.css" %}'>
+
+
+	<link rel="stylesheet"  href='{% static "assets/css/colors/switch.css" %}'>
+	<link href='{% static "assets/css/colors/color-2.css" %}' rel="alternate stylesheet" type="text/css" title="color-2">
+	<link href='{% static "assets/css/colors/color-3.css" %}' rel="alternate stylesheet" type="text/css" title="color-3">
+	<link href='{% static "assets/css/colors/color-4.css" %}' rel="alternate stylesheet" type="text/css" title="color-4">
+	<link href='{% static "assets/css/colors/color-5.css" %}' rel="alternate stylesheet" type="text/css" title="color-5">
+	<link href='{% static "assets/css/colors/color-6.css" %}' rel="alternate stylesheet" type="text/css" title="color-6">
+	<link href='{% static "assets/css/colors/color-7.css" %}' rel="alternate stylesheet" type="text/css" title="color-7">
+	<link href='{% static "assets/css/colors/color-8.css" %}' rel="alternate stylesheet" type="text/css" title="color-8">
+	<link href='{% static "assets/css/colors/color-9.css" %}' rel="alternate stylesheet" type="text/css" title="color-9">
+
+</head>
+
+<body>
+
+	<div id="preloader"></div>
+
+			<div id="switch-color" class="color-switcher">
+		<div class="open"><i class="fas fa-cog fa-spin"></i></div>
+		<h4>COLOR OPTION</h4>
+		<ul>
+			<li><a class="color-2" onclick="setActiveStyleSheet('color-2'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+			<li><a class="color-3" onclick="setActiveStyleSheet('color-3'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+			<li><a class="color-4" onclick="setActiveStyleSheet('color-4'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+			<li><a class="color-5" onclick="setActiveStyleSheet('color-5'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+			<li><a class="color-6" onclick="setActiveStyleSheet('color-6'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+			<li><a class="color-7" onclick="setActiveStyleSheet('color-7'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+			<li><a class="color-8" onclick="setActiveStyleSheet('color-8'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+			<li><a class="color-9" onclick="setActiveStyleSheet('color-9'); return true;" href="#!"><i class="fas fa-circle"></i></a> </li>
+		</ul>
+		<button class="switcher-light">WIDE </button>
+		<button class="switcher-dark">BOX </button>
+		<a class="rtl-v" href="RTL_Genius/index.html">RTL </a>
+	</div>
+
+
+
+	<!-- Start of Header section
+		============================================= -->
+		<header>
+			<div id="main-menu"  class="main-menu-container">
+				<div  class="main-menu">
+					<div class="container">
+						<div class="navbar-default">
+							<div class="navbar-header float-left">
+								<a class="navbar-brand text-uppercase" href="#"><img src='{% static "assets/img/logo/logo.png" %}' alt="logo"></a>
+							</div><!-- /.navbar-header -->
+							<div class="cart-search float-right ul-li">
+								<ul>
+									<li><a href="{% url 'cart' %}"><i class="fas fa-shopping-bag"></i></a></li>
+									<li>
+										<button type="button" class="toggle-overlay search-btn">
+											<i class="fas fa-search"></i>
+										</button>
+										<div class="search-body">
+											<div class="search-form">
+												<form action="{% url 'search' %}" method="GET">
+													{% csrf_token %}
+													<input class="search-input" name= "search" type="search" placeholder="Search Here">
+													<div class="outer-close toggle-overlay">
+														<button type="button" class="search-close">
+															<i class="fas fa-times"></i>
+														</button>
+													</div>
+												</form>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+							
+							<div class="log-in float-right">
+								{% if user.is_authenticated %}
+								<a href="{% url 'dashboard' %}"> Hi &hearts; {{user.username}}</a>
+								<a href="{% url 'signout' %}">Log out</a>
+								{% else %}
+								<a  data-toggle="modal" data-target="#login" href="#">log in </a>
+								<a  data-toggle="modal" data-target="#register" href="#">register</a>
+								{% endif %}
+								
+								<!-- The Modal -->
+								<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+
+											<!-- Modal Header -->
+											<div class="modal-header backgroud-style">
+												<div class="gradient-bg"></div>
+												<div class="popup-logo">
+													<img src='{% static "assets/img/logo/p-logo.jpg" %}' alt="">
+												</div>
+												<div class="popup-text text-center">
+													<h2> <span>Login</span> Your Account.</h2>
+													<p>Login to our website, or <span>REGISTER</span></p>
+												</div>
+											</div>
+
+											<!-- Modal body -->
+											<div class="modal-body">
+												<!--<div class="facebook-login">
+													<a href="#">
+														<div class="log-in-icon">
+															<i class="fab fa-facebook-f"></i>
+														</div>
+														<div class="log-in-text text-center">
+															Login with Facebook
+														</div>
+													</a>
+												</div>
+												<div class="alt-text text-center"><a href="#">OR SIGN IN</a> </div>-->
+												<form action="{% url 'login' %}" method="POST" enctype="multipart/form-data" autocomplete="off">
+													{% csrf_token %}
+													<div class="contact-info form-input" >
+														<label style="font-weight:bold;" >Username</label>
+														<input class="name" name="uname" type="text" onfocus="this.value=''" placeholder="">
+													</div>
+													<div class="contact-info">
+														<label style="font-weight:bold;">Password</label>
+														<input class="password" name="pw" type="password" onfocus="this.value=''" placeholder="">
+													</div>
+													<br>
+																							
+													<div class="nws-button text-center white text-capitalize">
+														<button type="submit" value="Submit">Log in</button> 
+													</div> 
+												</form>
+												
+												<!--<div class="log-in-footer text-center">
+													<p>* Denotes mandatory field.</p>
+													<p>** At least one telephone number is required.</p>
+												</div>-->
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-hidden="true">
+									<div class="modal-dialog">
+										<div class="modal-content">
+
+											<!-- Modal Header -->
+											<div class="modal-header backgroud-style">
+												<div class="gradient-bg"></div>
+												<div class="popup-logo">
+													<img src='{% static "assets/img/logo/p-logo.jpg" %}' alt="">
+												</div>
+												<div class="popup-text text-center">
+													<h2>Get <span>Registered</span> with us</h2>
+													
+												</div>
+											</div>
+
+											<!-- Modal body -->
+											<div class="modal-body">
+												<!--<div class="facebook-login">
+													<a href="#">
+														<div class="log-in-icon">
+															<i class="fab fa-facebook-f"></i>
+														</div>
+														<div class="log-in-text text-center">
+															Login with Facebook
+														</div>
+													</a>
+												</div>
+												<div class="alt-text text-center"><a href="#">OR SIGN IN</a> </div> -->
+												
+												<form class="contact_form" action='{% url "register" %}' method="POST" enctype="multipart/form-data">
+													{% csrf_token %}
+													<div class="contact-info">
+														<input type="text" name="fname" id="w3lName" placeholder="First Name*" class="contact-input ab"><br><br>
+														
+													</div>
+													<div class="contact-info">
+														<input type="text" name="lname" id="w3lName" placeholder="Last Name*" class="contact-input ab"><br><br>
+														
+													</div>
+													<div class="contact-info">
+														<input type="text" name="uname" id="w3lName" placeholder="Username*" class="contact-input ab"><br><br>
+														
+													</div>
+													<div class="contact-info">
+														<input type="email" name="email" id="w3lSender" placeholder="Your Email*" class="contact-input ab" required=""><br><br>
+														
+													</div>
+													<div class="contact-info">
+														<input type="tel" maxlength="10" minlength="10" name="contact" id="w3lName" placeholder="contact " class="contact-input ab"><br><br>
+														
+													</div>
+													<div class="contact-info">
+														<input type="text" name="city" id="w3lName" placeholder="city" class="contact-input ab"><br><br>
+														
+													</div>
+													<div class="contact-info">
+														<input type="password" name="pw" id="w3lName" placeholder="Password" class="contact-input ab"><br><br>
+													
+													</div>
+													<div class="contact-info">
+														<input type="password" name="cpw" id="w3lName" placeholder="Confirm Password" class="contact-input ab"><br><br>	
+													</div>
+
+													<!--<div class="contact-info">
+														Register as Teacher :
+															<input type="checkbox" name="staff" style="height:20px;width:30px" >
+														</div>-->
+													
+													<div class="nws-button text-center white text-capitalize">
+														<button type="submit" value="Submit">Register Now</button> 
+													</div> 
+												</form>
+												<div class="log-in-footer text-center">
+													<p>* Denotes mandatory field.</p>
+													<p>** At least one telephone number is required.</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div> <!--End of register and login-->
+
+							<!-- Collect the nav links, forms, and other content for toggling -->
+							<nav class="navbar-menu float-right">
+								<div class="nav-menu ul-li">
+									<ul>
+										<li class="menu-item-has-children ul-li-block">
+											<a href="{% url 'hm' %}">Home</a>
+											<!--<ul class="sub-menu">
+												<li><a href='{% url "hm" %}'>Home</a></li>
+											</ul>-->
+										</li>
+										<li><a href="{% url 'about' %}">About Us</a></li>
+										<li><a href="{% url 'crs' %}">Courses</a></li>
+										<li><a href="{% url 'contact' %}">Contact Us</a></li>
+										<li class="menu-item-has-children ul-li-block">
+											<a href="#">Services</a>
+											<ul class="sub-menu">
+												<li><a href="{% url 'Apply_afci' %}">Register as Teacher</a></li>
+												<li><a href="#about-us">Placement Support</a></li>
+											</ul>
+										</li>
+										<!--<li class="breadcrumb-item"><a href="{% url 'Apply_afci' %}">Apply Now</a></li>-->
+										<li class="menu-item-has-children ul-li-block">
+											<a href="#!">Pages</a>
+											<ul class="sub-menu">
+												<li><a href="{% url 'tech' %}">Teachers</a></li>
+											
+												<!--<li><a href="blog.html">Blog</a></li>
+												<li><a href="blog-single.html">Blog Single</a></li>-->
+												<li><a href="{% url 'material' %}">Study Materials</a></li>
+												
+												<li><a href="{% url 'faq' %}">FAQ</a></li>
+												<li><a href="{% url 'cart' %}">Check Out</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</nav>
+							
+
+							<div class="mobile-menu">
+								<div class="logo"><a href="index-1.html"><img src='{% static "assets/img/logo/logo.png" %}' alt="Logo"></a></div>
+								<nav>
+									<ul>
+										<li><a href="{% url 'hm' %}">Home</a>
+										</li>
+										<li><a href="{% url 'about' %}">About</a></li>
+										<li><a href="{% url 'crs' %}">Courses</a></li>
+										<li><a href="{% url 'contact' %}">Contact Us</a></li>
+										<li><a href="#">Services</a>
+										<ul>
+												<li><a href="{% url 'Apply_afci' %}">Register as Teacher</a></li>
+												<li><a href="#about-us">Placement Support</a></li>
+												
+											</ul>
+										</li>
+										
+										<li><a href="#">Pages</a>
+											<ul>
+											
+												<li><a href="{% url 'tech' %}">teacher</a></li>
+												<li><a href="{% url 'material' %}">Study Materials</a></li>
+												<li><a href="faq.html">FAQ</a></li>
+												<li><a href="{% url 'cart' %}">Check Out</a></li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+ 	<!-- Start of Header section
+ 		============================================= --> 
+
+
+	<!-- Start of breadcrumb section
+		============================================= -->
+		<section id="breadcrumb" class="breadcrumb-section relative-position backgroud-style">
+			<div class="blakish-overlay"></div>
+			<div class="container">
+				<div class="page-breadcrumb-content text-center">
+					<div class="page-breadcrumb-title">
+						<h2 class="breadcrumb-head black bold"> <span>About Us</span></h2>
+					</div>
+					<div class="page-breadcrumb-item ul-li">
+						<ul class="breadcrumb text-uppercase black">
+							<li class="breadcrumb-item"><a href="{% url 'hm' %}">Home</a></li>
+							<li class="breadcrumb-item active">ABOUT</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+	<!-- End of breadcrumb section
+		============================================= -->
+
+
+	<!-- Start of about us content
+		============================================= -->
+		<section id="about-page" class="about-page-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-9">
+						<div class="about-us-content-item">
+							<div class="about-gallery">
+								<div class="about-gallery-img grid-1">
+									<img src='{% static "assets/img/about/abt-2.jpg" %}' alt="">
+								</div>
+								<div class="about-gallery-img grid-2">
+									<img src='{% static "assets/img/about/abt-3.jpg" %}' alt="">
+								</div>
+								<div class="about-gallery-img grid-2">
+									<img src='{% static "assets/img/about/abt-4.jpg" %}' alt="">
+								</div>
+							</div>
+							<!-- /gallery -->
+
+							<div class="about-text-item">
+								<div class="section-title-2  headline text-left">
+									<h2>We Are <span>'Asharaj Foundation '</span> Career institute </h2>
+								</div>
+								<p>
+									India, a fastest growing economy in the world, is the world’s youngest nation today.
+									 The emergence of educated youth in such a large number draws unprecedented focus towards 
+									 making this talent pool employable. Innovation and Technology adopted in Industry is also 
+									 transforming the way we manage businesses. These rapid changes lead to huge gap between academia 
+									 and the Industry thereby impacting employability.</p>
+								<p>
+									Asharaj Foundation’, registered under the Societies Act 1860 and managed by experts drawn from Industry,
+									Academia, Social Sector and Business leaders came into being in order to work for addressing the employability
+									challenges being faced by the young generation. The primary objective of the foundation is to bridge the gap between
+									academia and industry so as to provide employable work force to Corporate Sector in addition to enhancing productivity
+									 of organizations by skill up gradation of in-service employees.	</p>
+
+								<p>
+									Asharaj Foundation has following centers of specialized training in order to fulfill its mandate effectively. <br>
+                                    a)	Center for Corporate Training, Placement and Internship (CTPI) <br>
+                                    b)	Department of Higher Education and Scholarships (DHES) <br>
+                                    c)	Asharaj Foundation Career Institute (AFCI) <br> 
+								</p>
+
+								<p>
+									CTPI deals with students of pre final year, final year and recently passed out students who are looking
+									 for better placement opportunities and prepares them for summer training, Apprenticeship training,
+									 Internships, Corporate attachments leading to their final Placements. Working professionals can also
+									 enroll for learning cutting edge technologies and for improving their placement opportunities.
+								</p>
+
+								<p>
+								DHES deals with final year students and working professionals interested in higher education, scholarships
+								 and better employment opportunities. Final year students, working professionals and ladies on temporary
+								  work break can also enroll for improving their qualifications and for preparing themselves for a better employment.
+								   Many courses are ideally suited for defence personnel, corporate employees and para military personnel for
+								    undertaking UGC approved online degree programs in order to complete their graduation and post graduation before
+									 their retirement in order to prepare them for second innings.
+								</p>
+
+								<p>
+									AFCI deals with PCMB coaching to school students and for their admission to Sainik Schools, 
+									RIMC (Rashtriya Indian Military College), NDA Khadakwasla (BSc program) for Army/Navy/Air Force, 
+									 Defence Forces 10+2 entry scheme (BTech program) and Armed Forces Medical College (AFMC Pune for MBBS program)
+									  and other recruitments for Army/Navy/Air Force.
+								</p>
+
+								<p>
+									<h5>Governing Council</h5> <br>
+									Asharaj Foundation is a ‘Not for Profit (NFP)’ women led organization. It is governed by a Governing Council comprising of following board members – <br>
+
+									 a)	Asha Singh, President and Chairperson – A Social worker, Ex Coordinator NWWA Kochi (Kerala) Chapter, Value based counselor and Heartfulness volunteer <br>
+
+									b)	Urvashi Singh, Vice President – Corporate Leader from IT and Telecom domain  <br>
+
+									c)	Pratyoosh Raizada, Executive Member – Corporate Leader (Technology management) <br>
+
+									d)	Abhishek Pratap Singh, Treasurer – AP/TS State Vice President (Hon) CIMSME (Confederation of Indian MSME), Subject Matter expert ICTMAE (International Council of Technology, Management and Applied Engineering), Biotechnologist and Project Coordinator (Tele Medicine Projects) Hyderabad.<br>
+
+									e)	Dr Smaranika Das (PT), Joint Secretary – Founder Director Curamos Healthcare Pvt Ltd, Hyderabad and a successful Entrepreneur  <br>
+
+									f)	Bharat Bhushan Singh, Executive Member – Business leader and Entrepreneur <br>
+
+									g)	Seema Singh, Executive Member – Social worker and expert in women Empowerment  <br>
+
+									h)	Prof (Cdr) RP Singh, Gen Secretary – Ex Defence Officer, Academic expert in Training and Placement and Founder Director Asharaj Foundation Lucknow <br>
+
+
+
+								</p>
+
+								<p>
+									<h4>Vision</h4>
+									Education and employability for all is the key to nation’s strength and prosperity. 
+									Human empowerment will lead to a strong nation.
+								</p>
+
+								<p>
+									<h4>Mission</h4>
+									Make education and employability within reach of all those seeking a bright career. 
+									Bridge the skill gap between academia and industry in order to ensure 100% employability.
+								</p>
+
+							</div>
+							<!-- /about-text -->
+
+							<div class="course-teacher about-teacher-2">
+								<div class="course-advantage about-teacher-2">
+									<div class="section-title-2  headline text-left">
+										<h2>AFCI<span>provides</span></h2>
+									</div>
+									<div class="service-slide_3">
+										<div class="service-text-icon" style="height:350px">
+											<div class="service-icon float-left">
+												<i class="text-gradiant flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i>
+											</div>
+											<div class="service-text">
+												<h3 class="bold-font">The Power Of Education.</h3>
+												<p>Lorem ipsum dolor sit amet consectuerer adipiscing elit set diam nonnumynibh.</p>
+											</div>
+										</div>
+										<div class="service-text-icon" style="height:350px">
+											<div class="service-icon float-left">
+												<i class="text-gradiant flaticon-clipboard-with-pencil"></i>
+											</div>
+											<div class="service-text">
+												<h3 class="bold-font">Best Online Education.</h3>
+												<p>Good quality education has the power to change the life of a person, a community and the
+													future of the planet. It is a fundamental human right of every woman, man and child – no
+													matter who and where they are..</p>
+											</div>
+										</div>
+										<div class="service-text-icon" style="height:350px">
+											<div class="service-icon float-left">
+												<i class="text-gradiant flaticon-list"></i>
+											</div>
+											<div class="service-text">
+												<h3 class="bold-font">Education For All Student.</h3>
+												<p>Lorem ipsum dolor sit amet consectuerer adipiscing elit set diam nonnumynibh.</p>
+											</div>
+										</div>
+										<div class="service-text-icon" style="height:350px">
+											<div class="service-icon float-left">
+												<i class="text-gradiant flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i>
+											</div>
+											<div class="service-text">
+												<h3 class="bold-font">The Power Of Education.</h3>
+												<p>Lorem ipsum dolor sit amet consectuerer adipiscing elit set diam nonnumynibh.</p>
+											</div>
+										</div>
+										<div class="service-text-icon" style="height:350px">
+											<div class="service-icon float-left">
+												<i class="text-gradiant flaticon-clipboard-with-pencil"></i>
+											</div>
+											<div class="service-text">
+												<h3 class="bold-font">Best Online Education.</h3>
+												<p>Lorem ipsum dolor sit amet consectuerer adipiscing elit set diam nonnumynibh.</p>
+											</div>
+										</div>
+										<div class="service-text-icon" style="height:350px">
+											<div class="service-icon float-left">
+												<i class="text-gradiant flaticon-list"></i>
+											</div>
+											<div class="service-text">
+												<h3 class="bold-font">Education For All Student.</h3>
+												<p>Lorem ipsum dolor sit amet consectuerer adipiscing elit set diam nonnumynibh.</p>
+											</div>
+										</div>
+										<div class="service-text-icon" style="height:350px">
+											<div class="service-icon float-left">
+												<i class="text-gradiant flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i>
+											</div>
+											<div class="service-text">
+												<h3 class="bold-font">The Power Of Education.</h3>
+												<p>Lorem ipsum dolor sit amet consectuerer adipiscing elit set diam nonnumynibh.</p>
+											</div>
+										</div>
+										<div class="service-text-icon" style="height:350px">
+											<div class="service-icon float-left">
+												<i class="text-gradiant flaticon-clipboard-with-pencil"></i>
+											</div>
+											<div class="service-text">
+												<h3 class="bold-font">Best Online Education.</h3>
+												<p>Lorem ipsum dolor sit amet consectuerer adipiscing elit set diam nonnumynibh.</p>
+											</div>
+										</div>
+										<div class="service-text-icon" style="height:350px">
+											<div class="service-icon float-left">
+												<i class="text-gradiant flaticon-list"></i>
+											</div>
+											<div class="service-text">
+												<h3 class="bold-font">Education For All Student.</h3>
+												<p>Lorem ipsum dolor sit amet consectuerer adipiscing elit set diam nonnumynibh.</p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /course-advantage -->
+
+
+								<!--<div class="about-course-categori about-teacher-2">
+									<div class="section-title-2  headline text-left">
+										<h2>Course <span>Categories</span></h2>
+									</div>
+									
+									<div class="category-slide text-center">
+										<div class="category-icon-title text-center">
+											<div class="category-icon">
+												<i class="text-gradiant flaticon-technology"></i>
+											</div>
+											<div class="category-title">
+												<h4>Responsive Website</h4>
+											</div>
+										</div>
+
+										<div class="category-icon-title text-center">
+											<div class="category-icon">
+												<i class="text-gradiant flaticon-app-store"></i>
+											</div>
+											<div class="category-title">
+												<h4>IOS Applications</h4>
+											</div>
+										</div>
+
+										<div class="category-icon-title text-center">
+											<div class="category-icon">
+												<i class="text-gradiant flaticon-artist-tools"></i>
+											</div>
+											<div class="category-title">
+												<h4>Graphic Design</h4>
+											</div>
+										</div>
+
+										<div class="category-icon-title text-center">
+											<div class="category-icon">
+												<i class="text-gradiant flaticon-business"></i>
+											</div>
+											<div class="category-title">
+												<h4>Marketing</h4>
+											</div>
+										</div>
+
+										<div class="category-icon-title text-center">
+											<div class="category-icon">
+												<i class="text-gradiant flaticon-dna"></i>
+											</div>
+											<div class="category-title">
+												<h4>Science</h4>
+											</div>
+										</div>
+
+										<div class="category-icon-title text-center">
+											<div class="category-icon">
+												<i class="text-gradiant flaticon-cogwheel"></i>
+											</div>
+											<div class="category-title">
+												<h4>Enginering</h4>
+											</div>
+										</div>
+
+										<div class="category-icon-title text-center">
+											<div class="category-icon">
+												<i class="text-gradiant flaticon-technology-1"></i>
+											</div>
+											<div class="category-title">
+												<h4>Photography</h4>
+											</div>
+										</div>
+
+										<div class="category-icon-title text-center">
+											<div class="category-icon">
+												<i class="text-gradiant flaticon-technology-2"></i>
+											</div>
+											<div class="category-title">
+												<h4>Mobile Application</h4>
+											</div>
+										</div>
+									</div>
+								</div> -->
+								<!-- /course-categori -->
+
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="side-bar-widget first-widget">
+							<h2 class="widget-title text-capitalize"><span>Director's Profile</h2>
+							<div class="course-img">
+								<img src='{% static "assets/img/teacher/ct-1.jpg" %}' alt="">
+							</div>
+							<div class="course-desc">
+								<p>Prof (Cdr) RP Singh, Director Asharaj Foundation, Lucknow is an alumni of Naval College of Engineering, Cochin University of Science and Technology (CUSAT) and MDI Gurgaon. </p>
+							</div>
+							<div class="genius-btn gradient-bg text-center text-uppercase ul-li-block bold-font">
+								<a href="{% url 'director' %}">Know More <i class="fas fa-caret-right"></i></a>
+							</div>
+						</div>
+
+						<div class="side-bar-widget">
+							<h2 class="widget-title text-capitalize"><span>Related </span>News.</h2>
+							<div class="latest-news-posts">
+								<div class="latest-news-area">
+									<div class="latest-news-thumbnile relative-position">
+										<img src='{% static "assets/img/blog/lb-1.jpg" %}' alt="">
+										<div class="hover-search">
+											<i class="fas fa-search"></i>
+										</div>
+										<div class="blakish-overlay"></div>
+									</div>
+									<div class="date-meta">
+										<i class="fas fa-calendar-alt"></i> 26 April 2018
+									</div>
+									<h3 class="latest-title bold-font"><a href="#">Affiliate Marketing A Beginner’s Guide.</a></h3>
+								</div>
+								<!-- /post -->
+
+								<div class="latest-news-posts">
+									<div class="latest-news-area">
+										<div class="latest-news-thumbnile relative-position">
+											<img src='{% static "assets/img/blog/lb-2.jpg" %}' alt="">
+											<div class="hover-search">
+												<i class="fas fa-search"></i>
+											</div>
+											<div class="blakish-overlay"></div>
+										</div>
+										<div class="date-meta">
+											<i class="fas fa-calendar-alt"></i> 26 April 2018
+										</div>
+										<h3 class="latest-title bold-font"><a href="#">No.1 The Best Online Course 2018.</a></h3>
+									</div>
+									<!-- /post -->
+								</div>
+
+								<div class="view-all-btn bold-font">
+									<a href="#">View All News <i class="fas fa-chevron-circle-right"></i></a>
+								</div>
+							</div>
+						</div>
+
+						<!--<div class="side-bar-widget">
+							<h2 class="widget-title text-capitalize"><span>Featured</span> Course.</h2>
+							<div class="featured-course">
+								<div class="best-course-pic-text relative-position">
+									<div class="best-course-pic relative-position">
+										<img src='{% static "assets/img/blog/fb-1.jpg" %}' alt="">
+										<div class="trend-badge-2 text-center text-uppercase">
+											<i class="fas fa-bolt"></i>
+											<span>Trending</span>
+										</div>
+									</div>
+									<div class="best-course-text">
+										<div class="course-title mb20 headline relative-position">
+											<h3><a href="#">Fully Responsive Web Design &amp; Development.</a></h3>
+										</div>
+										<div class="course-meta">
+											<span class="course-category"><a href="#">Web Design</a></span>
+											<span class="course-author"><a href="#">250 Students</a></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>-->
+					</div>
+				</div>
+			</div>
+		</section>
+	<!-- End of about us content
+		============================================= -->
+
+
+	<!-- Start of best product section
+		============================================= -->
+		<!--<section id="best-product" class="best-product-section best-product-4">
+			<div class="container">
+				<div class="section-title-2 mb65 headline text-left">
+					<h2>Genius <span>Best Products.</span></h2>
+				</div>
+				<div  id="best-product-slide-item" class="best-product-slide">
+					<div class="product-img-text">
+						<div class="product-img text-center mb20">
+							<img src='{% static "assets/img/product/bp-1.png" %}' alt="">
+						</div>
+						<div class="product-text-content relative-position">
+							<div class="best-title-price float-left">
+								<div class="course-title headline">
+									<h3><a href="#">Mobile Apps Books.</a></h3>
+								</div>
+								<div class="price-start">
+									Start from
+									<span>$55.25</span>
+								</div>
+							</div>
+							<div class="add-cart text-center">
+								<i class="fas fa-cart-plus"></i>
+							</div>
+						</div>
+					</div>
+
+					<div class="product-img-text">
+						<div class="product-img text-center mb20">
+							<img src='{% static "assets/img/product/bp-2.png" %}' alt="">
+						</div>
+						<div class="product-text-content relative-position">
+							<div class="best-title-price float-left">
+								<div class="course-title headline">
+									<h3><a href="#">Mobile Apps Books.</a></h3>
+								</div>
+								<div class="price-start">
+									Start from
+									<span>$55.25</span>
+								</div>
+							</div>
+							<div class="add-cart text-center">
+								<i class="fas fa-cart-plus"></i>
+							</div>
+						</div>
+					</div>
+					<div class="product-img-text">
+						<div class="product-img text-center mb20">
+							<img src='{% static "assets/img/product/bp-3.png" %}' alt="">
+						</div>
+						<div class="product-text-content relative-position">
+							<div class="best-title-price float-left">
+								<div class="course-title headline">
+									<h3><a href="#">Mobile Apps Books.</a></h3>
+								</div>
+								<div class="price-start">
+									Start from
+									<span>$55.25</span>
+								</div>
+							</div>
+							<div class="add-cart text-center">
+								<i class="fas fa-cart-plus"></i>
+							</div>
+						</div>
+					</div>
+					<div class="product-img-text">
+						<div class="product-img text-center mb20">
+							<img src='{% static "assets/img/product/bp-4.png" %}' alt="">
+						</div>
+						<div class="product-text-content relative-position">
+							<div class="best-title-price float-left">
+								<div class="course-title headline">
+									<h3><a href="#">Mobile Apps Books.</a></h3>
+								</div>
+								<div class="price-start">
+									Start from
+									<span>$55.25</span>
+								</div>
+							</div>
+							<div class="add-cart text-center">
+								<i class="fas fa-cart-plus"></i>
+							</div>
+						</div>
+					</div>
+					<div class="product-img-text">
+						<div class="product-img text-center mb20">
+							<img src='{% static "assets/img/product/bp-1.png" %}' alt="">
+						</div>
+						<div class="product-text-content relative-position">
+							<div class="best-title-price float-left">
+								<div class="course-title headline">
+									<h3><a href="#">Mobile Apps Books.</a></h3>
+								</div>
+								<div class="price-start">
+									Start from
+									<span>$55.25</span>
+								</div>
+							</div>
+							<div class="add-cart text-center">
+								<i class="fas fa-cart-plus"></i>
+							</div>
+						</div>
+					</div>
+					<div class="product-img-text">
+						<div class="product-img text-center mb20">
+							<img src='{% static "assets/img/product/bp-2.png" %}' alt="">
+						</div>
+						<div class="product-text-content relative-position">
+							<div class="best-title-price float-left">
+								<div class="course-title headline">
+									<h3><a href="#">Mobile Apps Books.</a></h3>
+								</div>
+								<div class="price-start">
+									Start from
+									<span>$55.25</span>
+								</div>
+							</div>
+							<div class="add-cart text-center">
+								<i class="fas fa-cart-plus"></i>
+							</div>
+						</div>
+					</div>
+					<div class="product-img-text">
+						<div class="product-img text-center mb20">
+							<img src='{% static "assets/img/product/bp-3.png" %}' alt="">
+						</div>
+						<div class="product-text-content relative-position">
+							<div class="best-title-price float-left">
+								<div class="course-title headline">
+									<h3><a href="#">Mobile Apps Books.</a></h3>
+								</div>
+								<div class="price-start">
+									Start from
+									<span>$55.25</span>
+								</div>
+							</div>
+							<div class="add-cart text-center">
+								<i class="fas fa-cart-plus"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>  -->
+	<!-- End  of best product section
+		============================================= -->
+
+
+
+
+	<!-- Start of footer section
+		============================================= -->
+		<footer>
+			<section id="footer-area" class="footer-area-section">
+				<div class="container">
+					<div class="footer-content pb10">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="footer-widget "  >
+									<div class="footer-logo mb35">
+										<img src='{% static "assets/img/logo/f-logo.png" %}' alt="">
+									</div>
+									<div class="footer-about-text">
+										<p>We take our mission of increasing global access to quality education seriously.
+											We connect learners to the best universities and institutions from around the
+											world.</p>
+										<p>OUR CHILDREN ARE THE FUTURE OF INDIA </p><P>OUR MOTTO IS TO EDUCATE INDIA TO BECOME A SUPERPOWER</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="footer-widget "  >
+									<div class="footer-menu ul-li-block">
+										<h2 class="widget-title">Useful Links</h2>
+										<ul>
+											<li><a href="{% url 'about' %}"><i class="fas fa-caret-right"></i>About Us</a></li>
+											<li><a href="{% url 'crs' %}"><i class="fas fa-caret-right"></i>Courses</a></li>
+											<li><a href="#best-course"><i class="fas fa-caret-right"></i>Categories</a></li>
+											<li><a href="#about-us"><i class="fas fa-caret-right"></i>Placement</a></li>
+											<li><a href="#best-course"><i class="fas fa-caret-right"></i>Training</a></li>
+											<li><a href="{% url 'material' %}"><i class="fas fa-caret-right"></i>Study Materials</a></li>
+										</ul>
+									</div>
+								</div>
+								<div class="footer-menu ul-li-block "  >
+									<h2 class="widget-title">Account Info</h2>
+									<ul>
+										<li><a href="{% url 'dashboard' %}"><i class="fas fa-caret-right"></i>Profile</a></li>
+										<li><a href="{% url 'contact' %}"><i class="fas fa-caret-right"></i>Contact Us</a></li>
+										<li><a href="{% url 'faq' %}"><i class="fas fa-caret-right"></i>FAQs</a></li>
+										
+									</ul>
+								</div>
+							</div>
+							<div class="col-md-3">
+
+								<div class="footer-widget "  >
+									
+									<h2 class="widget-title">Photo Gallery</h2>
+									{% for i in gal %}
+									<div class="photo-list ul-li">
+										
+										<ul>
+											<li>
+												<img src="{{ i.img.url }}" style="float:left; width:80px;height:80px;" alt="">
+												<div class="blakish-overlay"></div>
+												<div class="pop-up-icon">
+													<a href="{{ i.img.url }}" data-lightbox="roadtrip">
+														<i class="fas fa-search"></i>
+													</a>
+												</div>
+											<li>
+											<!--<li>
+												<img src='{% static "assets/img/gallery/g-2.jpg" %}' alt="">
+												<div class="blakish-overlay"></div>
+												<div class="pop-up-icon">
+													<a href="assets/img/gallery/g-2.jpg" data-lightbox="roadtrip">
+														<i class="fas fa-search"></i>
+													</a>
+												</div>
+											</li>
+											<li>
+												<img src='{% static "assets/img/gallery/g-3.jpg" %}' alt="">
+												<div class="blakish-overlay"></div>
+												<div class="pop-up-icon">
+													<a href="assets/img/gallery/g-3.jpg" data-lightbox="roadtrip">	<i class="fas fa-search"></i></a>
+												</div>
+											</li>
+											<li>
+												<img src='{% static "assets/img/gallery/g-4.jpg" %}' alt="">
+												<div class="blakish-overlay"></div>
+												<div class="pop-up-icon">
+													<a href="assets/img/gallery/g-4.jpg" data-lightbox="roadtrip">	<i class="fas fa-search"></i></a>
+												</div>
+											</li>
+											<li>
+												<img src='{% static "assets/img/gallery/g-5.jpg" %}' alt="">
+												<div class="blakish-overlay"></div>
+												<div class="pop-up-icon">
+													<a href="assets/img/gallery/g-5.jpg" data-lightbox="roadtrip">	<i class="fas fa-search"></i></a>
+												</div>
+											</li>
+											<li>
+												<img src='{% static "assets/img/gallery/g-6.jpg" %}' alt="">
+												<div class="blakish-overlay"></div>
+												<div class="pop-up-icon">
+													<a href="assets/img/gallery/g-6.jpg" data-lightbox="roadtrip">	<i class="fas fa-search"></i></a>
+												</div>
+
+											</li>-->
+										</ul>
+									
+									</div>
+									{% endfor %}
+									
+								</div>
+							</div>
+						</div>
+					</div> 
+					<!-- /footer-widget-content -->
+					<div class="footer-social-subscribe mb65">
+						<div class="row">
+							<div class="col-md-3">
+								<div class="footer-social ul-li "  >
+									<h2 class="widget-title">Social Network</h2>
+									<ul>
+										<li><a href="https://www.facebook.com/asharajfoundation/"><i class="fab fa-facebook-f"></i></a></li>
+										<li><a href="https://twitter.com/asharajsociety?lang=en"><i class="fab fa-twitter"></i></a></li>
+										<li><a href="https://chat.whatsapp.com/GUL0TPI1Z1P62olSW5cxIC"><i class="fab fa-whatsapp"></i></a></li>
+										<li><a href="https://www.instagram.com/asharajsociety/"><i class="fab fa-instagram"></i></a></li>
+										<li><a href="https://www.linkedin.com/company/asharajfoundation/about/"><i class="fab fa-linkedin-in"></i></a></li>
+										
+										
+									</ul>
+								</div>
+							</div>
+							<div class="col-md-9">
+								<div class="subscribe-form "  >
+									<h2 class="widget-title">Subscribe To AFCI:DigiLearn</h2>
+
+									<div class="subs-form relative-position">
+										<form action="{% url 'Subs_email' %}" method="post">
+											{% csrf_token %}
+											<input class="course" name="course" type="email" placeholder="Email Address." required="@,.">
+											<div class="nws-button text-center  gradient-bg text-uppercase">
+												<button type="submit" value="Submit">Subscribe now</button> 
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="copy-right-menu">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="copy-right-text">
+									<p>Copyright © 2022. All Rights Reserved by Asharaj Foundation
+										<br> <i style="color:palevioletred;">Designed & Developed by Yashi Sharma and Siya Pandey </i></p>
+									
+									
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="copy-right-menu-item float-right ul-li">
+									<ul>
+										<li><a href="{% url 'privacy' %}">Privacy & Policy</a></li>
+										<li><a href="{% url 'termsandconditions' %}">Term Of Service</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</footer>
+	<!-- End of footer section
+		============================================= -->
+
+
+
+		<!-- For Js Library -->
+		<script src='{% static "assets/js/jquery-2.1.4.min.js" %}'></script>
+		<script src='{% static "assets/js/bootstrap.min.js" %}'></script>
+		<script src='{% static "assets/js/popper.min.js" %}'></script>
+		<script src='{% static "assets/js/owl.carousel.min.js" %}'></script>
+		<script src='{% static "assets/js/jarallax.js" %}'></script>
+		<script src='{% static "assets/js/jquery.magnific-popup.min.js" %}'></script>
+		<script src='{% static "assets/js/lightbox.js" %}'></script>
+		<script src='{% static "assets/js/jquery.meanmenu.js" %}'></script>
+		<script src='{% static "assets/js/scrollreveal.min.js" %}'></script>
+		<script src='{% static "assets/js/jquery.counterup.min.js" %}'></script>
+		<script src='{% static "assets/js/waypoints.min.js" %}'></script>
+		<script src='{% static "assets/js/jquery-ui.js" %}'></script>
+		<script src='{% static "assets/js/gmap3.min.js" %}'></script>
+		<script src='{% static "assets/js/switch.js" %}'></script>
+		<script src='{% static "http://maps.google.com/maps/api/js?key=AIzaSyC61_QVqt9LAhwFdlQmsNwi5aUJy9B2SyA" %}'></script>
+
+    	<script src='{% static "assets/js/script.js" %}'></script>
+	</body>
+	
+<!-- Mirrored from jthemes.net/themes/html/genius-course/about.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 03 Mar 2022 06:12:56 GMT -->
+</html>
